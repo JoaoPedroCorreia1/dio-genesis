@@ -37,7 +37,7 @@ class Button {
 
             this.clickAudio.play();
 
-            this.select();
+            this.#select();
             this.gameController
                 .eventButtonSelected(this.colorNumber);
         }

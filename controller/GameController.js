@@ -8,7 +8,7 @@ class GameController {
 
         this.score = 0;
 
-        this.buttons = this.createButtons();
+        this.buttons = this.#createButtons();
 
         this.backgroundAudio = document.getElementById('background-audio');
 
@@ -53,7 +53,7 @@ class GameController {
     eventButtonSelected(colorNumber)
     {
         this.clickedOrder.push(colorNumber);
-        this.checkOrder();
+        this.#checkOrder();
     }
 
     // public functions
@@ -63,7 +63,7 @@ class GameController {
         this.score = 0;
         this.order = [];
     
-        this.nextLevel();
+        this.#nextLevel();
     }
     
     // private functions
@@ -86,7 +86,7 @@ class GameController {
         this.clickedOrder = [];
 
         setTimeout(() => {
-        this.shuffleOrder();
+        this.#shuffleOrder();
         },
         1000);
     }
@@ -97,7 +97,7 @@ class GameController {
         {
             if(this.clickedOrder[button] != this.order[button]) 
             {
-                this.gameOver();
+                this.#gameOver();
                 return;
             }
         }
@@ -106,7 +106,7 @@ class GameController {
         {
             this.congratulationsAudio.play();
             alert(`Pontuação: ${this.score}\nVocê acertou! Iniciando próximo nível!`);
-            this.nextLevel();
+            this.#nextLevel();
         }
     }
 
@@ -116,7 +116,7 @@ class GameController {
         
         this.order.push(newRandomColor);
 
-        this.lockButtons();
+        this.#lockButtons();
 
         for(let i in this.order) 
         {
@@ -127,7 +127,7 @@ class GameController {
         }
 
         setTimeout(() => {
-           this.unlockButtons(); 
+           this.#unlockButtons(); 
         }, 
         this.order.length * 800);
     }
