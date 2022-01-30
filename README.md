@@ -1,13 +1,12 @@
-# Oi, tudo bem? Chegou aqui através do curso, certo? 🙃
+# Genesis DIO
 
-Esse é o repositório da nossa aula de Javascript, na qual vamos fazer um simples jogo Gênesis com apenas algumas linhas de código! 
+Bootcamp Edduz Fullstack Developer #3
 
-### Os requisitos são:
-
-* [HTML básico](https://www.w3schools.com/html/)
-* [CSS básico](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
-* [Javascript básico](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
- 
+Genesis game made with HTML5, CSS and Javascript.
 
 
-## 🚀 Let's code! 🚀
+
+## How to Run
+
+Open Page:
+https://joaopedrocorreia1.github.io/genesis-dio/
