@@ -4,8 +4,6 @@ Bootcamp Edduz Fullstack Developer #3
 
 Genesis game made with HTML5, CSS and Javascript.
 
-
-
 ## How to Run
 
 Open Page:
