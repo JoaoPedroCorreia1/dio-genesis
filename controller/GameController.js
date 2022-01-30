@@ -3,17 +3,17 @@ class GameController {
     // inicialization
     constructor()
     {
-        this.order = []
-        this.clickedOrder = [];
+        this._order = []
+        this._clickedOrder = [];
 
-        this.score = 0;
+        this._score = 0;
 
-        this.buttons = this.#createButtons();
+        this._buttons = this.#createButtons();
 
-        this.backgroundAudio = document.getElementById('background-audio');
+        this._backgroundAudio = document.getElementById('background-audio');
 
-        this.congratulationsAudio = document.getElementById('congratulations-audio');
-        this.mistakeAudio = document.getElementById('mistake-audio');
+        this._congratulationsAudio = document.getElementById('congratulations-audio');
+        this._mistakeAudio = document.getElementById('mistake-audio');
     }
 
     #createButtons()
@@ -52,7 +52,7 @@ class GameController {
     // events
     eventButtonSelected(colorNumber)
     {
-        this.clickedOrder.push(colorNumber);
+        this._clickedOrder.push(colorNumber);
         this.#checkOrder();
     }
 
@@ -60,8 +60,8 @@ class GameController {
     playGame ()
     {
         alert('Bem vindo ao Gênesis! Iniciando novo jogo!');
-        this.score = 0;
-        this.order = [];
+        this._score = 0;
+        this._order = [];
     
         this.#nextLevel();
     }
@@ -69,10 +69,10 @@ class GameController {
     // private functions
     #gameOver()
     {
-        this.mistakeAudio.play();
+        this._mistakeAudio.play();
 
         alert(
-            `Pontuação: ${this.score}!
+            `Pontuação: ${this._score}!
             \nVocê perdeu o jogo!
             \nClique em OK para iniciar um novo jogo`);
      
@@ -82,8 +82,8 @@ class GameController {
 
     #nextLevel()     
     {
-        this.score++;
-        this.clickedOrder = [];
+        this._score++;
+        this._clickedOrder = [];
 
         setTimeout(() => {
         this.#shuffleOrder();
@@ -93,50 +93,60 @@ class GameController {
 
     #checkOrder()
     {
-        for(let button in this.clickedOrder) 
+        for(let button in this._clickedOrder) 
         {
-            if(this.clickedOrder[button] != this.order[button]) 
+            if(this._clickedOrder[button] != this._order[button]) 
             {
                 this.#gameOver();
                 return;
             }
         }
 
-        if(this.clickedOrder.length === this.order.length) 
+        if(this._clickedOrder.length === this._order.length) 
         {
-            this.congratulationsAudio.play();
-            alert(`Pontuação: ${this.score}\nVocê acertou! Iniciando próximo nível!`);
+            this._congratulationsAudio.play();
+            alert(`Pontuação: ${this._score}\nVocê acertou! Iniciando próximo nível!`);
             this.#nextLevel();
         }
     }
 
     #shuffleOrder()
     {
+        this.#addRandomColor();
+
+        this.#displayOrder();
+    }
+
+    #addRandomColor()
+    {
         let newRandomColor = Math.floor(Math.random() * 4);
         
-        this.order.push(newRandomColor);
+        this._order.push(newRandomColor);
+    }
 
+    #displayOrder()
+    {
         this.#lockButtons();
 
-        for(let i in this.order) 
+        for(let i in this._order) 
         {
-            let colorNumber = this.order[Number(i)];
+            let colorNumber = this._order[Number(i)];
 
-            let button = this.buttons[colorNumber];
+            let button = this._buttons[colorNumber];
             button.lightColor(Number(i) + 1);
         }
 
         setTimeout(() => {
            this.#unlockButtons(); 
         }, 
-        this.order.length * 800);
+        this._order.length * 800);
     }
 
     #lockButtons()
     {
-        for(let i in this.buttons)
+        for(let i in this._buttons)
         {
-            let button = this.buttons[Number(i)];
+            let button = this._buttons[Number(i)];
 
             button.setLocked(true);
         }
@@ -144,9 +154,9 @@ class GameController {
 
     #unlockButtons()
     {
-        for(let i in this.buttons)
+        for(let i in this._buttons)
         {
-            let button = this.buttons[Number(i)];
+            let button = this._buttons[Number(i)];
 
             button.setLocked(false);
         }

@@ -2,44 +2,44 @@ class Button {
 
     constructor(
         gameController,
-        element,
+        webElement,
         colorNumber,
         clickAudio
     ) {
         // scripts
-        this.gameController = gameController
+        this._gameController = gameController
 
         // variables
-        this.element = element;
-        this.colorNumber = colorNumber;
+        this._webElement = webElement;
+        this._colorNumber = colorNumber;
 
-        this.clickAudio = clickAudio;
+        this._clickAudio = clickAudio;
 
-        this.isInAnimation = false;
+        this._isInAnimation = false;
 
-        this.locked = false;
+        this._locked = false;
     }
 
     // getters and setters
     setLocked(value)
     {
-        this.locked = value;
+        this._locked = value;
     }
     
     // public functions
     onClick()
     {
-        if(this.isInAnimation === false
-        && this.locked === false)
+        if(this._isInAnimation === false
+        && this._locked === false)
         {
-            this.clickAudio.pause();
-            this.clickAudio.currentTime = 0;
+            this._clickAudio.pause();
+            this._clickAudio.currentTime = 0;
 
-            this.clickAudio.play();
+            this._clickAudio.play();
 
             this.#select();
-            this.gameController
-                .eventButtonSelected(this.colorNumber);
+            this._gameController
+                .eventButtonSelected(this._colorNumber);
         }
     }
 
@@ -50,16 +50,16 @@ class Button {
         number = number * 800;
 
         setTimeout(() => {
-            this.clickAudio.pause();
-            this.clickAudio.currentTime = 0;
+            this._clickAudio.pause();
+            this._clickAudio.currentTime = 0;
 
-            this.clickAudio.play();
-            this.element.classList.add('selected');
+            this._clickAudio.play();
+            this._webElement.classList.add('selected');
         }, 
         number - 800);
 
         setTimeout(() => {
-            this.element.classList.remove('selected');
+            this._webElement.classList.remove('selected');
         }, 
         number - 150);
     }
@@ -67,14 +67,14 @@ class Button {
     // private functions
     #select()
     {
-        this.isInAnimation = true;
+        this._isInAnimation = true;
 
-        this.element.classList.add('selected');
+        this._webElement.classList.add('selected');
 
         setTimeout(() => {
-            this.isInAnimation = false;
+            this._isInAnimation = false;
 
-            this.element.classList.remove('selected');
+            this._webElement.classList.remove('selected');
         }, 
         500);
     }
