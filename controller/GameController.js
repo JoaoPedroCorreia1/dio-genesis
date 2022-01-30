@@ -61,6 +61,7 @@ class GameController {
     {
         alert('Bem vindo ao Gênesis! Iniciando novo jogo!');
         this.score = 0;
+        this.order = [];
     
         this.nextLevel();
     }
@@ -74,9 +75,7 @@ class GameController {
             `Pontuação: ${this.score}!
             \nVocê perdeu o jogo!
             \nClique em OK para iniciar um novo jogo`);
-        this.order = [];
-        this.clickedOrder = [];
-        
+     
         this.playGame();
     }
 
@@ -99,7 +98,7 @@ class GameController {
             if(this.clickedOrder[button] != this.order[button]) 
             {
                 this.gameOver();
-                break;
+                return;
             }
         }
 
@@ -113,14 +112,12 @@ class GameController {
 
     shuffleOrder()
     {
-        let newColor = Math.floor(Math.random() * 4);
-        let newColorIndex = this.order.length;
+        let newRandomColor = Math.floor(Math.random() * 4);
         
-        this.order[newColorIndex] = newColor;
+        this.order.push(newRandomColor);
 
         this.lockButtons();
 
-        console.log(this.order);
         for(let i in this.order) 
         {
             let colorNumber = this.order[Number(i)];
@@ -132,7 +129,7 @@ class GameController {
         setTimeout(() => {
            this.unlockButtons(); 
         }, 
-        this.order.length * 800 + 800);
+        this.order.length * 800);
     }
 
     lockButtons()
