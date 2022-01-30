@@ -16,7 +16,7 @@ class GameController {
         this.mistakeAudio = document.getElementById('mistake-audio');
     }
 
-    createButtons()
+    #createButtons()
     {
         return [
         new Button(
@@ -67,7 +67,7 @@ class GameController {
     }
     
     // private functions
-    gameOver()
+    #gameOver()
     {
         this.mistakeAudio.play();
 
@@ -80,7 +80,7 @@ class GameController {
     }
 
 
-    nextLevel()     
+    #nextLevel()     
     {
         this.score++;
         this.clickedOrder = [];
@@ -91,7 +91,7 @@ class GameController {
         1000);
     }
 
-    checkOrder()
+    #checkOrder()
     {
         for(let button in this.clickedOrder) 
         {
@@ -110,7 +110,7 @@ class GameController {
         }
     }
 
-    shuffleOrder()
+    #shuffleOrder()
     {
         let newRandomColor = Math.floor(Math.random() * 4);
         
@@ -132,7 +132,7 @@ class GameController {
         this.order.length * 800);
     }
 
-    lockButtons()
+    #lockButtons()
     {
         for(let i in this.buttons)
         {
@@ -142,7 +142,7 @@ class GameController {
         }
     }
 
-    unlockButtons()
+    #unlockButtons()
     {
         for(let i in this.buttons)
         {

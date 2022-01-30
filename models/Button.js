@@ -43,21 +43,6 @@ class Button {
         }
     }
 
-    // private functions
-    select()
-    {
-        this.isInAnimation = true;
-
-        this.element.classList.add('selected');
-
-        setTimeout(() => {
-            this.isInAnimation = false;
-
-            this.element.classList.remove('selected');
-        }, 
-        500);
-    }
-
     lightColor(number)
     {
         
@@ -77,6 +62,21 @@ class Button {
             this.element.classList.remove('selected');
         }, 
         number - 150);
+    }
+
+    // private functions
+    #select()
+    {
+        this.isInAnimation = true;
+
+        this.element.classList.add('selected');
+
+        setTimeout(() => {
+            this.isInAnimation = false;
+
+            this.element.classList.remove('selected');
+        }, 
+        500);
     }
 
 }
