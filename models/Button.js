@@ -1,5 +1,6 @@
 class Button {
 
+    // constructor
     constructor(
         gameController,
         webElement,

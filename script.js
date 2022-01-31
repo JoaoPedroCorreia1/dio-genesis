@@ -1,4 +1,4 @@
 const gameController = new GameController()
 
-//inicio do jogo
+//play game
 gameController.playGame();

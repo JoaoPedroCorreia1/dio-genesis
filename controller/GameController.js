@@ -1,6 +1,6 @@
 class GameController {
 
-    // inicialization
+    // constructor
     constructor()
     {
         this._order = []
