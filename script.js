@@ -1,4 +1,4 @@
-const gameController = new GameController()
+const gameController = new GameController();
 
 //play game
 gameController.playGame();
