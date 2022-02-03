@@ -85,10 +85,12 @@ class GameController {
         this._score++;
         this._clickedOrder = [];
 
-        setTimeout(() => {
-        this.#shuffleOrder();
-        },
-        1000);
+        setTimeout(
+            () => {
+                this.#shuffleOrder();
+            },
+            1000
+        );
     }
 
     #checkOrder()
@@ -136,10 +138,12 @@ class GameController {
             button.lightColor(Number(i) + 1);
         }
 
-        setTimeout(() => {
-           this.#unlockButtons(); 
-        }, 
-        this._order.length * 800);
+        setTimeout(
+            () => {
+                this.#unlockButtons(); 
+            },
+            this._order.length * 800
+        );
     }
 
     #lockButtons()

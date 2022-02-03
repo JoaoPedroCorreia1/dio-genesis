@@ -8,7 +8,7 @@ class Button {
         clickAudio
     ) {
         // scripts
-        this._gameController = gameController
+        this._gameController = gameController;
 
         // variables
         this._webElement = webElement;
@@ -50,19 +50,23 @@ class Button {
 
         number = number * 800;
 
-        setTimeout(() => {
-            this._clickAudio.pause();
-            this._clickAudio.currentTime = 0;
+        setTimeout(
+            () => {
+                this._clickAudio.pause();
+                this._clickAudio.currentTime = 0;
 
-            this._clickAudio.play();
-            this._webElement.classList.add('selected');
-        }, 
-        number - 800);
+                this._clickAudio.play();
+                this._webElement.classList.add('selected');
+            },
+            number - 800
+        );
 
-        setTimeout(() => {
-            this._webElement.classList.remove('selected');
-        }, 
-        number - 150);
+        setTimeout(
+            () => {
+                this._webElement.classList.remove('selected');
+            }, 
+            number - 150
+        );
     }
 
     // private functions
@@ -72,12 +76,14 @@ class Button {
 
         this._webElement.classList.add('selected');
 
-        setTimeout(() => {
-            this._isInAnimation = false;
+        setTimeout(
+            () => {
+                this._isInAnimation = false;
 
-            this._webElement.classList.remove('selected');
-        }, 
-        500);
+                this._webElement.classList.remove('selected');
+            }, 
+            500
+        );
     }
 
 }
