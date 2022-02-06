@@ -3,7 +3,7 @@ class GameController {
     // constructor
     constructor()
     {
-        this._order = []
+        this._order = [];
         this._clickedOrder = [];
 
         this._score = 0;
@@ -19,33 +19,34 @@ class GameController {
     #createButtons()
     {
         return [
-        new Button(
-            this,
-            document.querySelector('.blue'),
-            0,
-            document.getElementById('bluebutton-audio')
-        ),
+            new Button(
+                this,
+                document.querySelector('.blue'),
+                0,
+                document.getElementById('bluebutton-audio')
+            ),
         
-        new Button(
-            this,
-            document.querySelector('.red'),
-            1,
-            document.getElementById('redbutton-audio')
-        ),
+            new Button(
+                this,
+                document.querySelector('.red'),
+                1,
+                document.getElementById('redbutton-audio')
+            ),
 
-        new Button(
-            this,
-            document.querySelector('.green'),
-            2,
-            document.getElementById('greenbutton-audio')
-        ),
+            new Button(
+                this,
+                document.querySelector('.green'),
+                2,
+                document.getElementById('greenbutton-audio')
+            ),
         
-        new Button(
-            this,
-            document.querySelector('.yellow'),
-            3,
-            document.getElementById('yellowbutton-audio')
-        )];
+            new Button(
+                this,
+                document.querySelector('.yellow'),
+                3,
+                document.getElementById('yellowbutton-audio')
+            )
+        ];
     }
     
 
