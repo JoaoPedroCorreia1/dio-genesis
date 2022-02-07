@@ -86,12 +86,7 @@ class GameController {
         this._score++;
         this._clickedOrder = [];
 
-        setTimeout(
-            () => {
-                this.#shuffleOrder();
-            },
-            1000
-        );
+        setTimeout(() => {this.#shuffleOrder()}, 1000);
     }
 
     #checkOrder()
@@ -109,6 +104,7 @@ class GameController {
         {
             this._congratulationsAudio.play();
             alert(`Pontuação: ${this._score}\nVocê acertou! Iniciando próximo nível!`);
+            this.#lockButtons();
             this.#nextLevel();
         }
     }

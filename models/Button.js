@@ -44,12 +44,16 @@ class Button {
         }
     }
 
-    lightColor(number)
+    lightColor(numberOrder)
     {
-        
+        let time = numberOrder * 800;
 
-        number = number * 800;
+        // 650 millisec of selected time
+        let selectTime = time - 800;
 
+        let unselectTime = time - 150;
+
+        // select
         setTimeout(
             () => {
                 this._clickAudio.pause();
@@ -58,14 +62,15 @@ class Button {
                 this._clickAudio.play();
                 this._webElement.classList.add('selected');
             },
-            number - 800
+            selectTime
         );
 
+        // unselect
         setTimeout(
             () => {
                 this._webElement.classList.remove('selected');
             }, 
-            number - 150
+            unselectTime
         );
     }
 
