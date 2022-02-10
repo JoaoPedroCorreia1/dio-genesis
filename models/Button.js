@@ -7,88 +7,86 @@ class Button {
         colorNumber,
         clickAudio
     ) {
+
         // scripts
         this._gameController = gameController;
 
-        // variables
+        // attributes
         this._webElement = webElement;
         this._colorNumber = colorNumber;
 
         this._clickAudio = clickAudio;
 
+        this._displayTime = 650;
+        this._clickedTime = 500;
+
         this._isInAnimation = false;
 
         this._locked = false;
+        
     }
 
     // getters and setters
-    setLocked(value)
-    {
+    setLocked(value) {
+
         this._locked = value;
+
     }
     
     // public functions
-    onClick()
-    {
+    onClick() {
+
         if(this._isInAnimation === false
-        && this._locked === false)
-        {
-            this._clickAudio.pause();
-            this._clickAudio.currentTime = 0;
+        && this._locked === false) {
 
-            this._clickAudio.play();
-
-            this.#select();
+            this.#select(this._clickedTime);
             this._gameController
                 .eventButtonSelected(this._colorNumber);
+
         }
+
     }
 
-    lightColor(numberOrder)
-    {
-        let time = numberOrder * 800;
+    display(numberOrder) {
 
-        // 650 millisec of selected time
-        let selectTime = time - 800;
+        let displayOrderTime = (numberOrder + 1) * 800;
 
-        let unselectTime = time - 150;
-
-        // select
         setTimeout(
-            () => {
-                this._clickAudio.pause();
-                this._clickAudio.currentTime = 0;
+            () => { this.#select(this._displayTime); },
+            displayOrderTime
+        )
 
-                this._clickAudio.play();
-                this._webElement.classList.add('selected');
-            },
-            selectTime
-        );
+    }
 
-        // unselect
-        setTimeout(
-            () => {
-                this._webElement.classList.remove('selected');
-            }, 
-            unselectTime
-        );
+    #playClickAudio() {
+
+        this._clickAudio.pause();
+        this._clickAudio.currentTime = 0;
+
+        this._clickAudio.play();
+        
     }
 
     // private functions
-    #select()
-    {
+    #select(selectedTime) {
+
+        this.#playClickAudio();
+
         this._isInAnimation = true;
 
         this._webElement.classList.add('selected');
 
         setTimeout(
             () => {
+
                 this._isInAnimation = false;
 
                 this._webElement.classList.remove('selected');
+
             }, 
-            500
+            selectedTime
         );
+
     }
 
 }
