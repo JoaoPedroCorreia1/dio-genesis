@@ -33,8 +33,8 @@ class Button {
 
     }
     
-    // public functions
-    onClick() {
+    // events
+    eventOnClick() {
 
         if(this._isInAnimation === false
         && this._locked === false) {
@@ -47,6 +47,7 @@ class Button {
 
     }
 
+    // public functions
     display(numberOrder) {
 
         let displayOrderTime = (numberOrder + 1) * 800;
