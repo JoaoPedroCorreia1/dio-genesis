@@ -59,6 +59,7 @@ class Button {
 
     }
 
+    // private functions
     #playClickAudio() {
 
         this._clickAudio.pause();
@@ -68,7 +69,6 @@ class Button {
         
     }
 
-    // private functions
     #select(selectedTime) {
 
         this.#playClickAudio();
