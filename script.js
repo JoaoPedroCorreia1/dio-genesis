@@ -1,4 +1,11 @@
-const gameController = new GameController();
+let gameController;
 
-//play game
-gameController.playGame();
+const runApp = () => {
+
+    gameController = new GameController();
+
+    gameController.playGame();
+
+};
+
+window.onload = runApp;
