@@ -7,6 +7,14 @@
     
     <title>Genesis</title>
 
+    <script src="script.js"></script>
+
+    <!-- controller/GameController -->
+    <script src="controllers/GameController.js"></script> 
+
+    <script src="controllers/ButtonsController.js"></script> 
+    <script src="controllers/OrderController.js"></script> 
+
     <audio id="congratulations-audio" 
     src="resources/sound/congratulations.mp3" 
     preload="auto">
@@ -16,6 +24,9 @@
     src="resources/sound/mistake.mp3" 
     preload="auto">
     </audio>
+
+    <!-- models/Button -->
+    <script src="models/Button.js"></script>
 
     <audio id="bluebutton-audio" 
     src="resources/sound/blue_button.mp3" 
@@ -37,28 +48,27 @@
     preload="auto">
     </audio>
 
-    <script type="text/javascript" src="models/Button.js"></script>
-    <script type="text/javascript" src="controller/GameController.js"></script>
-    <script type="text/javascript" src="script.js"></script>
+    <!-- resources -->
+    <script src="resources/components/ButtonComponents.js"></script>
+
+    <!-- utils -->
+    <script src="utils/ButtonUtil.js"></script>
+    
 </head>
 <body>
     <div class="main-game">
         <div class="genius">
 
-            <div class="blue"
-            onclick="gameController._buttons[0].eventOnClick()">
+            <div class="blue">
             </div>
 
-            <div class="yellow"
-            onclick="gameController._buttons[3].eventOnClick()">
+            <div class="yellow">
             </div>
 
-            <div class="red"
-            onclick="gameController._buttons[1].eventOnClick()">
+            <div class="red">
             </div>
 
-            <div class="green"
-            onclick="gameController._buttons[2].eventOnClick()">
+            <div class="green">
             </div>
         </div>
     </div>

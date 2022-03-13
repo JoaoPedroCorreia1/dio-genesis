@@ -1,93 +1,68 @@
 class Button {
+  // constructor
+  constructor(buttonController, webElement, colorNumber, clickAudio) {
+    // scripts
+    this._buttonController = buttonController;
 
-    // constructor
-    constructor(
-        gameController,
-        webElement,
-        colorNumber,
-        clickAudio
-    ) {
+    // attributes
+    this._webElement = webElement;
+    this._colorNumber = colorNumber;
 
-        // scripts
-        this._gameController = gameController;
+    this._clickAudio = clickAudio;
 
-        // attributes
-        this._webElement = webElement;
-        this._colorNumber = colorNumber;
+    this._displayTime = 650;
+    this._clickedTime = 500;
 
-        this._clickAudio = clickAudio;
+    this._isInAnimation = false;
 
-        this._displayTime = 650;
-        this._clickedTime = 500;
+    this._locked = true;
 
-        this._isInAnimation = false;
+    this._webElement.addEventListener("click", (e) => {
+      this.eventOnClick();
+    });
+  }
 
-        this._locked = false;
-        
+  // getters and setters
+  setLocked(value) {
+    this._locked = value;
+  }
+
+  // events
+  eventOnClick() {
+    if (this._isInAnimation === false && this._locked === false) {
+      this.#select(this._clickedTime);
+      this._buttonController.eventButtonSelected(this._colorNumber);
     }
+  }
 
-    // getters and setters
-    setLocked(value) {
+  // public functions
+  display(numberOrder) {
+    let displayOrderTime = (numberOrder + 1) * 800;
 
-        this._locked = value;
+    setTimeout(() => {
+      this.#select(this._displayTime);
+    }, displayOrderTime);
+  }
 
-    }
-    
-    // events
-    eventOnClick() {
+  // private functions
+  #playClickAudio() {
+    this._clickAudio.pause();
+    this._clickAudio.currentTime = 0;
 
-        if(this._isInAnimation === false
-        && this._locked === false) {
+    this._clickAudio.play();
+  }
 
-            this.#select(this._clickedTime);
-            this._gameController
-                .eventButtonSelected(this._colorNumber);
+  #select(selectedTime) {
+    this.#playClickAudio();
 
-        }
+    this._isInAnimation = true;
 
-    }
+    this._webElement.classList.add("selected");
 
-    // public functions
-    display(numberOrder) {
+    setTimeout(() => {
+      this._isInAnimation = false;
 
-        let displayOrderTime = (numberOrder + 1) * 800;
-
-        setTimeout(
-            () => { this.#select(this._displayTime); },
-            displayOrderTime
-        )
-
-    }
-
-    // private functions
-    #playClickAudio() {
-
-        this._clickAudio.pause();
-        this._clickAudio.currentTime = 0;
-
-        this._clickAudio.play();
-        
-    }
-
-    #select(selectedTime) {
-
-        this.#playClickAudio();
-
-        this._isInAnimation = true;
-
-        this._webElement.classList.add('selected');
-
-        setTimeout(
-            () => {
-
-                this._isInAnimation = false;
-
-                this._webElement.classList.remove('selected');
-
-            }, 
-            selectedTime
-        );
-
-    }
-
+      this._webElement.classList.remove("selected");
+    }, selectedTime);
+  }
 }
