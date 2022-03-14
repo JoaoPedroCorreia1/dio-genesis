@@ -90,7 +90,6 @@ class GameController {
 
         this.#displayOrder();
       },
-
       1000
     );
   }

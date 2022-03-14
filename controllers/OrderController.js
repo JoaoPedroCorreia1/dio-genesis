@@ -40,17 +40,18 @@ class OrderController {
   }
 
   checkOrder() {
-    if (!this.orderMatched()) {
+    if (!this.#orderMatched()) {
       this._gameController.eventOrderIsNotMatched();
       return;
     }
 
-    if (!this.hasMoreButtons()) {
+    if (!this.#hasMoreButtons()) {
       this._gameController.eventOrderIsMatched();
     }
   }
 
-  hasMoreButtons() {
+  // private funcions
+  #hasMoreButtons() {
     if (this._clickedOrder.length >= this._order.length) {
       return false;
     }
@@ -58,7 +59,7 @@ class OrderController {
     return true;
   }
 
-  orderMatched() {
+  #orderMatched() {
     for (let button in this._clickedOrder) {
       let orderButton = this._order[button];
       let clickedButton = this._clickedOrder[button];
