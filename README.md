@@ -3,5 +3,5 @@
 Genesis game made with HTML5, CSS and Javascript. 
 
 ## How to Run
-Open Page:
+Open Link:
 https://joaopedrocorreia1.github.io/genesis-dio/
