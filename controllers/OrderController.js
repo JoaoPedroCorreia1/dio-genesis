@@ -4,7 +4,7 @@ class OrderController {
     // parent
     this._gameController = gameController;
 
-    // sibilings
+    // siblings
     this._getButtonsController = () => {
       return this._gameController.getButtonsController();
     };

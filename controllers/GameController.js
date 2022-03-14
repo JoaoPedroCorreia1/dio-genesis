@@ -6,9 +6,10 @@ class GameController {
 
     this._buttonsController = new ButtonsController(this);
 
-    // attr
+    // attributes
     this._score = 0;
 
+    // objects
     this._congratulationsAudio = document.getElementById(
       "congratulations-audio"
     );

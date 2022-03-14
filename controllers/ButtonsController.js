@@ -4,12 +4,12 @@ class ButtonsController {
     // parent
     this._gameController = gameController;
 
-    // sibilings
+    // siblings
     this._getOrderController = () => {
       return this._gameController.getOrderController();
     };
 
-    //objs
+    //objects
     this._buttons = ButtonComponents.getButtons(this);
   }
 
