@@ -1,68 +1,71 @@
-class Button {
-  // constructor
-  constructor(buttonController, webElement, colorNumber, clickAudio) {
-    // scripts
-    this._buttonController = buttonController;
+// constructor
+function Button(
+  buttonController,
+  webElement,
+  colorNumber,
+  clickAudio) {
+  // parent
+  this._buttonController = buttonController;
 
-    // attributes
-    this._webElement = webElement;
-    this._colorNumber = colorNumber;
+  // attributes
+  this._webElement = webElement;
+  this._colorNumber = colorNumber;
 
-    this._clickAudio = clickAudio;
+  this._clickAudio = clickAudio;
 
-    this._displayTime = 650;
-    this._clickedTime = 500;
+  this._displayTime = 650;
+  this._clickedTime = 500;
 
-    this._isInAnimation = false;
+  this._inAnimation = false;
 
-    this._locked = true;
+  this._locked = true;
 
-    this._webElement.addEventListener("click", (e) => {
-      this.eventOnClick();
-    });
-  }
+  // listeners
+  this._webElement.addEventListener("click", (e) => { this.eventOnClick(); });
+}
 
+(function() {
   // getters and setters
-  setLocked(value) {
+  this.setLocked = function (value) {
     this._locked = value;
   }
 
   // events
-  eventOnClick() {
-    if (this._isInAnimation === false && this._locked === false) {
-      this.#select(this._clickedTime);
+  this.eventOnClick = function () {
+    if (this._inAnimation === false && this._locked === false) {
+      this._select(this._clickedTime);
       this._buttonController.eventButtonSelected(this._colorNumber);
     }
   }
 
-  // public functions
-  display(numberOrder) {
+  // public methods
+  this.display = function (numberOrder) {
     let displayOrderTime = (numberOrder + 1) * 800;
 
     setTimeout(() => {
-      this.#select(this._displayTime);
+      this._select(this._displayTime);
     }, displayOrderTime);
   }
 
-  // private functions
-  #playClickAudio() {
+
+  // private methods
+  this._playClickAudio = function () {
     this._clickAudio.pause();
     this._clickAudio.currentTime = 0;
 
     this._clickAudio.play();
   }
 
-  #select(selectedTime) {
-    this.#playClickAudio();
+  this._select = function (selectedTime) {
+    this._playClickAudio();
 
-    this._isInAnimation = true;
-
+    this._inAnimation = true;
     this._webElement.classList.add("selected");
 
     setTimeout(() => {
-      this._isInAnimation = false;
-
+      this._inAnimation = false;
       this._webElement.classList.remove("selected");
-    }, selectedTime);
+    }, 
+    selectedTime);
   }
-}
+}).call(Button.prototype);

@@ -1,6 +1,6 @@
-class OrderController {
+var OrderController = (function () {
   //constructor
-  constructor(gameController) {
+  function OrderController(gameController) {
     // parent
     this._gameController = gameController;
 
@@ -16,42 +16,42 @@ class OrderController {
   }
 
   // getter and setters
-  getOrder() {
+  OrderController.prototype.getOrder = function () {
     return this._order;
   }
 
   // public functions
-  addClickedButton(colorNumber) {
+  OrderController.prototype.addClickedButton = function (colorNumber) {
     this._clickedOrder.push(colorNumber);
   }
 
-  addRandomButton() {
+  OrderController.prototype.addRandomButton = function () {
     let randomColor = ButtonUtil.getRandomColor();
 
     this._order.push(randomColor);
   }
 
-  resetOrder() {
+  OrderController.prototype.resetOrder = function () {
     this._order = [];
   }
 
-  resetClickedOrder() {
+  OrderController.prototype.resetClickedOrder = function () {
     this._clickedOrder = [];
   }
 
-  checkOrder() {
-    if (!this.#orderMatched()) {
+  OrderController.prototype.checkOrder = function () {
+    if (!this._orderMatched()) {
       this._gameController.eventOrderIsNotMatched();
       return;
     }
 
-    if (!this.#hasMoreButtons()) {
+    if (!this._hasMoreButtons()) {
       this._gameController.eventOrderIsMatched();
     }
   }
 
   // private funcions
-  #hasMoreButtons() {
+  OrderController.prototype._hasMoreButtons = function () {
     if (this._clickedOrder.length >= this._order.length) {
       return false;
     }
@@ -59,7 +59,7 @@ class OrderController {
     return true;
   }
 
-  #orderMatched() {
+  OrderController.prototype._orderMatched = function () {
     for (let button in this._clickedOrder) {
       let orderButton = this._order[button];
       let clickedButton = this._clickedOrder[button];
@@ -71,4 +71,6 @@ class OrderController {
 
     return true;
   }
-}
+
+  return OrderController;
+})();

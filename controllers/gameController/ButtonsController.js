@@ -1,44 +1,46 @@
-class ButtonsController {
-  //constructor
-  constructor(gameController) {
-    // parent
-    this._gameController = gameController;
+//constructor
+function ButtonsController(gameController) {
+  // parent
+  this._gameController = gameController;
 
-    // siblings
-    this._getOrderController = () => {
-      return this._gameController.getOrderController();
-    };
+  // siblings
+  this._getOrderController = () => {
+    return this._gameController.getOrderController();
+  };
 
-    //objects
-    this._buttons = ButtonComponents.getButtons(this);
-  }
+  //objects
+  this._buttons = ButtonComponents.getButtons(this);
+}
+
+ButtonsController.prototype = { 
+  ...ButtonsController.prototype,
 
   //getters and setters
-  getButton(colorNumber) {
+  getButton: function(colorNumber) {
     return this._buttons[colorNumber];
-  }
+  },
 
   //events
-  eventButtonSelected(colorNumber) {
+  eventButtonSelected: function(colorNumber) {
     this._getOrderController().addClickedButton(colorNumber);
 
     this._getOrderController().checkOrder();
-  }
+  },
 
   //public functions
-  lockButtons() {
+  lockButtons: function() {
     this._buttons.forEach((button) => {
       button.setLocked(true);
     });
-  }
+  },
 
-  unlockButtons() {
+  unlockButtons: function() {
     this._buttons.forEach((button) => {
       button.setLocked(false);
     });
-  }
+  },
 
-  displayInOrder(order) {
+  displayInOrder: function(order) {
     this.lockButtons();
 
     order.forEach((buttonNumber, i) => {
