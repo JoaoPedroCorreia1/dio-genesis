@@ -1,6 +1,5 @@
-let gameController;
 const runApp = () => {
-    gameController = new GameController();
+    const gameController = new GameController();
 
     gameController.playGame();
 };
