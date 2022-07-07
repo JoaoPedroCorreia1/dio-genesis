@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: 0 auto;
     background-color: rgb(208, 255, 239);
 }
 
@@ -19,8 +19,8 @@ body {
     border: 1px solid #ffffff;
     background-color: #ffffff;
     border-radius: 100%;
-    width: 700px;
-    height: 700px;
+    width: 600px;
+    height: 600px;
 }
 
 .blue {
@@ -49,4 +49,23 @@ body {
 
 .selected {
     opacity: 0.5;
+}
+
+#congrats {
+    height: 120px;
+    width: 200px;
+    top: 40%;
+    left: 42%;
+    position: absolute;
+    align-items: center;
+    display: none;
+    mix-blend-mode: darken;
+}
+
+#congrats.show {
+    display: block;
+}
+
+#congrats.hide {
+    display: none;
 }

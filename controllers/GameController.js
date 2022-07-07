@@ -7,9 +7,12 @@ class GameController {
     this._buttonsController = new ButtonsController(this);
 
     // attributes
+    this._maxScore = 10;
     this._score = 0;
 
     // objects
+    this._congratsImage = new CongratsImage();
+
     this._congratulationsAudio = document.getElementById(
       "congratulations-audio"
     );
@@ -72,8 +75,12 @@ class GameController {
 
   #score() {
     this._score++;
-
     this._congratulationsAudio.play();
+
+    if(this._score === this._maxScore) {
+      this.#congratulations();
+      return;
+    }
 
     alert(
       `Pontuação: ${this._score}
@@ -81,6 +88,20 @@ class GameController {
     );
 
     this.#nextLevel();
+  }
+
+  #congratulations() {
+    this._congratsImage.show();
+
+    setTimeout(() => {
+      alert(
+        `Pontuação: ${this._score}
+              \nParabéns! Você chegou a pontuação máxima!`
+      );
+
+      this._congratsImage.hide();
+      this.playGame();
+    }, 250);
   }
 
   #nextLevel() {
