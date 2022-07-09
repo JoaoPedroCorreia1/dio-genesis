@@ -7,7 +7,7 @@ class GameController {
     this._buttonsController = new ButtonsController(this);
 
     // attributes
-    this._maxScore = 10;
+    this._maxScore = 5;
     this._score = 0;
 
     // objects
@@ -48,19 +48,32 @@ class GameController {
 
   // public functions
   playGame() {
-    this._buttonsController.lockButtons();
+    this.#reset();
 
-    alert("Bem vindo ao Gênesis! Iniciando novo jogo!");
+    alert("Bem vindo ao Gênesis!"
+        + " Faça 5 pontos para Ganhar!");
+
+    this.#newGame();
+  }
+
+  // private functions
+  #newGame() {
+    this.#reset();
+
+    alert("Iniciando novo jogo!");
+
+    this.#nextLevel();
+  }
+
+  #reset() {
+    this._buttonsController.lockButtons();
 
     this._score = 0;
 
     this._orderController.resetOrder();
     this._orderController.resetClickedOrder();
-
-    this.#nextLevel();
   }
 
-  // private functions
   #gameOver() {
     this._mistakeAudio.play();
 
@@ -70,7 +83,7 @@ class GameController {
             \nClique em OK para iniciar um novo jogo`
     );
 
-    this.playGame();
+    this.#newGame();
   }
 
   #score() {
@@ -96,11 +109,11 @@ class GameController {
     setTimeout(() => {
       alert(
         `Pontuação: ${this._score}
-              \nParabéns! Você chegou a pontuação máxima!`
+        \nParabéns! Você chegou a pontuação máxima!`
       );
 
       this._congratsImage.hide();
-      this.playGame();
+      this.#newGame();
     }, 250);
   }
 
